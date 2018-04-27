@@ -1,0 +1,8 @@
+#　Service address
+SERVICE_ADDRESS = "localhost:10062"
+
+# Listen port
+HTTP_PORT = 62223
+
+# Default squid port
+PROXY_PORT = 62222
