@@ -2,11 +2,11 @@
 """
 DATE: 2018/4/26
 """
-import uuid
 from uuid import getnode as get_mac
 from urllib.request import urlopen
 from urllib.error import URLError
-import json
+from socket import timeout
+import shortuuid
 
 
 class DeviceInfo(object):
@@ -28,7 +28,7 @@ class DeviceInfo(object):
             # 切割出IP字符串
             self.ip = _[1][3:]
 
-        except URLError:
+        except (URLError, timeout):
             print("get network info request connect timeout!")
 
     @property
@@ -40,7 +40,8 @@ class DeviceInfo(object):
 
     @property
     def id(self):
-        return str(uuid.uuid3(uuid.NAMESPACE_DNS, self.mac))
+
+        return shortuuid.uuid()
 
 
 if __name__ == '__main__':
@@ -51,4 +52,3 @@ if __name__ == '__main__':
     print(device.province)
     print(device.operators)
     print(device.ip)
-

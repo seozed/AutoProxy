@@ -2,8 +2,12 @@ from flask import Flask
 from config import *
 from redial import Redial
 
+
+# TODO 只在初始化的时候获取地区参数，后面就调用内存中的数据
 app = Flask(__name__)
 status = None
+
+adsl = Redial()
 
 @app.route('/redial', methods=['GET'])
 def redial():
@@ -13,8 +17,8 @@ def redial():
 
     else:
         status = True
-        redial = Redial()
-        redial.start()
+
+        adsl.start()
         status = False
         return "redial sucess!"
 
