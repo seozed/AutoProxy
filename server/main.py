@@ -3,7 +3,7 @@ from flask import request, Flask
 import os
 import config
 import json
-from .settingser import Settingser
+from settingser import Settingser
 
 class UniqueIndexList(list):
 

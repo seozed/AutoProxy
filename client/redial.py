@@ -1,10 +1,10 @@
 import os
 import time
-from .config import *
+from config import *
 from urllib.request import urlopen
 from urllib import parse
+from device import DeviceInfo
 
-from .device import DeviceInfo
 
 
 
