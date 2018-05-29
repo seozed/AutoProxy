@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from flask import request, Flask
+from flask import request, Flask, render_template
 import os
 import config
 import json
@@ -80,9 +80,11 @@ def update_settings(proxy_list, output_file, template_path):
 
 @app.route('/getip', methods=['GET'])
 def get_proxy():
-    result = json.dumps(proxy_pool)
-    # TODO: 加入获取指定分类，指定ID的IP
-    return result
+    context = {
+        'proxy_list': proxy_pool
+    }
+
+    return render_template('proxy_info.html', **context)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=config.PORT)
