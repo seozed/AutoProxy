@@ -27,7 +27,7 @@ class Settingser(object):
         settings = self.read_template(self.template_file)
 
         for item in proxy_items:
-            port = "http_port {squid_port}".format(**item)
+            port = "\nhttp_port {squid_port}".format(**item)
             acl = "acl PORT_{id} myport {squid_port}".format(**item)
             http_access = "http_access allow PORT_{id}".format(**item)
             cache_peer = "cache_peer {ip} parent {port} 0 allow-miss round-robin connect-fail-limit=1 login={user}:{pwd} no-query no-digest name={id}".format(**item)
