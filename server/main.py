@@ -13,13 +13,14 @@ class UniqueIndexList(list):
 
     def append(self, p_object):
 
+        tmp_port = None
         for index, item in enumerate(self):
             if item[self.key] == p_object[self.key]:
-                self[index]['ip'] = p_object['ip']
+                tmp_port = item['squid_port']
+                del self[index]
 
-        else:
-            p_object['squid_port'] = len(self) + 3128
-            super().append(p_object)
+        p_object['squid_port'] = tmp_port or len(self) + 3128
+        super().append(p_object)
 
 
 #==================================================================
