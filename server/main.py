@@ -15,10 +15,11 @@ class UniqueIndexList(list):
 
         for index, item in enumerate(self):
             if item[self.key] == p_object[self.key]:
-                del self[index]
+                self[index]['ip'] = p_object['ip']
 
-        p_object['squid_port'] = len(self) + 3128
-        super().append(p_object)
+        else:
+            p_object['squid_port'] = len(self) + 3128
+            super().append(p_object)
 
 
 #==================================================================
