@@ -68,7 +68,7 @@ class Redial(object):
 
         while 1:
             self.redial()
-            result = self.pushCurrentAddress(self.url)
+            result = self.pushCurrentAddress(self.url, max_try=10)
 
             if result:
                 return True
