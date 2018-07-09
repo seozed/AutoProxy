@@ -3,9 +3,12 @@ import time
 from config import *
 from urllib.request import urlopen
 from urllib import parse
+from urllib.parse import ParseResult
 from device import DeviceInfo
 
 
+class URLBuilder(ParseResult):
+    pass
 
 
 class Redial(object):
@@ -43,7 +46,6 @@ class Redial(object):
     def redial(self):
         os.system('sh pppoe.sh')
 
-
     def build_URL(self):
 
         device = DeviceInfo()
@@ -68,7 +70,7 @@ class Redial(object):
 
         while 1:
             self.redial()
-            result = self.pushCurrentAddress(self.url, max_try=10)
+            result = self.pushCurrentAddress(self.url)
 
             if result:
                 return True
@@ -76,7 +78,7 @@ class Redial(object):
             else:
                 time.sleep(sleep_time)
 
+
 if __name__ == '__main__':
     redial = Redial()
-    a = redial.build_URL()
-    print(a)
+    redial.pushCurrentAddress(redial.url)

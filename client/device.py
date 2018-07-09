@@ -43,7 +43,6 @@ class DeviceInfo(object):
 
         return shortuuid.uuid(self.mac)
 
-
 if __name__ == '__main__':
     device = DeviceInfo()
     print(device.id)
